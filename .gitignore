@@ -1,0 +1,8 @@
+dbs/
+dist/
+in/
+node_modules/
+sqllite-query.sqllite
+out/sql
+out
+.history/
