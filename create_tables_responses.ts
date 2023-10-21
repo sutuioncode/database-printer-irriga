@@ -4,7 +4,7 @@ import { Database, OPEN_READONLY } from "sqlite3";
 
 
 const originalHeadersQuery = `SELECT * FROM ResponsesInquerito`;
-const originalResponsesQuery = `SELECT * WHERE perguntaId IS NOT NULL`;
+const originalResponsesQuery = `SELECT * FROM inqueritoResposta WHERE perguntaId IS NOT NULL`;
 const headersExtractedFromResponsesQuery = `SELECT * FROM inqueritoResposta WHERE perguntaId ISNULL`;
 const sqlFilePath = (path: string) => `./out/sql/${path}.sql`;
 const paths = {
@@ -42,11 +42,12 @@ function main() {
   function executeQueryAndSave(db: Database, query: string, outputPath: string, stringifyer: (args: any) => string, inputPath: string) {
     db.all(query, [], (error, rows) => {
       if (error) {
-        console.log("could noquery on file " + inputPath + " with error", error);
+        console.log("could not query on file " + inputPath + " with error", error);
         return
       }
 
       for (const row of rows) {
+        console.log(stringifyer(row))
         fs.appendFile(
           sqlFilePath(outputPath),
           stringifyer(row),
@@ -61,6 +62,7 @@ function main() {
   }
 }
 
+//@ts-ignore
 function rmFile(path: typeof paths[string]) {
   try {
     fs.rmSync(sqlFilePath(path))
