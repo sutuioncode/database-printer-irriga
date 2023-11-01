@@ -98,14 +98,14 @@ function convertResponse({
             updatedOn,
             updatedBy)
         values(
-          ${cnv_id(id)},
-          ${cnv_id(inqueritoId)},
+          '${cnv_id(id)}',
+          '${cnv_id(inqueritoId)}',
           ${cnv_v(perguntaId)},
-          ${cnv_v(descricao)},
-          ${cnv_v(tipo)},
-          ${cnv_id(responseId)},
+          '${cnv_v(descricao)}',
+          '${cnv_v(tipo)}',
+          '${cnv_id(responseId)}',
           ${cnv_date(created_at)},
-          ${cnv_id(createdBy)},
+          '${cnv_id(createdBy)}',
           ${cnv_date(updated_at)},
           ${cnv_id(updatedBy)}
         ) 
